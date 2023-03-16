@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Map from "./Map";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	function mapReadyCallback(map) {
+		console.log(map);
+	}
+	return (
+		<div className="App h-full">
+			<header className="App-header flex justify-center bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50/80 py-3">
+				<h1>OpenMapToolkit</h1>
+			</header>
+			<main className="App-main h-full">
+				<Map mapReadyCallback={mapReadyCallback}/>
+			</main>
+		</div>
+	);
 }
 
 export default App;
