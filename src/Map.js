@@ -1,23 +1,25 @@
-import React, { useEffect, useRef } from "react";
-import maplibregl from "maplibre-gl";
-import './Map.css'
+import "./Map.css";
+import { MapLibreMap, MlNavigationTools } from "@mapcomponents/react-maplibre";
 
-function Map({ mapReadyCallback }) {
-	const mlglMapContainer = useRef(null);
-	useEffect(() => {
-		const map = new maplibregl.Map({
-			container: mlglMapContainer.current,
-			style: "https://demotiles.maplibre.org/style.json", // stylesheet location
-			center: [20.5, 44.8], // starting position [lng, lat]
-			zoom: 9, // starting zoom
-		});
-		mapReadyCallback(map);
-	}, [mlglMapContainer.current]);
-	return (
-		<>
-			<div id="maplibre-gl-container" ref={mlglMapContainer}></div>
-		</>
-	);
+const mapOpts = {
+  style:
+    "https://api.maptiler.com/maps/streets-v2/style.json?key=" +
+    process.env.REACT_APP_MAPTILER_KEY, // stylesheet location
+  center: [20.5, 44.8], // starting position [lng, lat]
+  zoom: 9, // starting zoom
+};
+
+function Map() {
+  return (
+    <>
+      <div id="map-wrapper-main">
+        <MapLibreMap options={mapOpts} mapId="map-main" />
+      </div>
+      <div id="nav-wrapper-main">
+        <MlNavigationTools mapId="map-main" />
+      </div>
+    </>
+  );
 }
 
 export default Map;
