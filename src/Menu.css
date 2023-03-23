@@ -1,0 +1,13 @@
+.menu-icon-container {
+  height: 50px;
+  width: 50px;
+  border-width: 5px;
+  border-radius: 7px;
+}
+
+.menu-icon-container img {
+  padding: 2px;
+  border-radius: 2px;
+  height: 40px;
+  width: 40px;
+}

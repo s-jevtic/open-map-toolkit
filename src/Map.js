@@ -1,5 +1,9 @@
 import "./Map.css";
-import { MapLibreMap, MlNavigationTools, MlScaleReference } from "@mapcomponents/react-maplibre";
+import {
+  MapLibreMap,
+  MlNavigationTools,
+  MlScaleReference,
+} from "@mapcomponents/react-maplibre";
 
 const mapOpts = {
   style:
@@ -18,7 +22,10 @@ function Map() {
       <div id="nav-wrapper-main">
         <MlNavigationTools mapId="map-main" />
       </div>
-      <div id="scale-wrapper-main" className="absolute bottom-[15px] left-[15px]">
+      <div
+        id="scale-wrapper-main"
+        className="absolute bottom-[15px] left-[15px]"
+      >
         <MlScaleReference mapId="map-main" />
       </div>
     </>

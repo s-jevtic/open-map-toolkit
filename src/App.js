@@ -1,5 +1,6 @@
 import "./App.css";
 import Map from "./Map";
+import MenuUi from "./MenuUi";
 import { MapComponentsProvider } from "@mapcomponents/react-maplibre";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <main className="App-main h-full">
         <MapComponentsProvider>
           <Map />
+          <MenuUi />
         </MapComponentsProvider>
       </main>
     </div>
