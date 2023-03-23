@@ -12,14 +12,21 @@ function Menu({ items, parentOrientation, indices }) {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
-    const handler = (event) => {
+    const mouseHandler = (event) => {
       if (iconContainerRef.current && !submenus) {
         setSelected(iconContainerRef.current.contains(event.target));
       }
     };
-    document.addEventListener("mousedown", handler);
+    const touchHandler = (event) => {
+      if (iconContainerRef.current && !submenus) {
+        setSelected(iconContainerRef.current.contains(event.target));
+      }
+    };
+    document.addEventListener("mousedown", mouseHandler);
+    document.addEventListener("touchstart", touchHandler);
     return () => {
-      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("mousedown", mouseHandler);
+      document.removeEventListener("touchstart", touchHandler);
     };
   });
 
@@ -30,9 +37,27 @@ function Menu({ items, parentOrientation, indices }) {
           orientation === "horizontal" ? "flex-row" : "flex-col"
         }`}
         onMouseOver={() => {
+          if (!submenus) {
+            iconContainerRef.current.classList.add("hover:brightness-75");
+          }
           setActive(true);
         }}
+        onTouchStart={() => {
+          if (!submenus) {
+            iconContainerRef.current.classList.add("hover:brightness-75");
+          }
+          setActive(true);
+        }}
+        onTouchCancel={() => {
+          if (!submenus) {
+            iconContainerRef.current.classList.remove("hover:brightness-75");
+          }
+          setActive(false);
+        }}
         onMouseLeave={() => {
+          if (!submenus) {
+            iconContainerRef.current.classList.remove("hover:brightness-75");
+          }
           setTimeout(() => {
             setActive(false);
           }, 500);
@@ -41,7 +66,7 @@ function Menu({ items, parentOrientation, indices }) {
         <div
           className={`menu-icon-container m-2 bg-slate-50 dark:bg-slate-900 border-slate-900 z-20 ${
             selected ? "opacity-100" : "opacity-80"
-          } hover:brightness-75`}
+          }`}
           data-tooltip-id="menu-tooltip"
           ref={iconContainerRef}
         >
