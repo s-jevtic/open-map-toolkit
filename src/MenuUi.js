@@ -2,7 +2,7 @@ import React from "react";
 import Menu from "./Menu.js";
 import { menuItems } from "./menuItems";
 
-function MenuUi() {
+function MenuUi({ onToolSelect, onToolDeselect, toolId }) {
   return (
     <div id="menu-container" className="m-3 flex flex-col w-fit z-20">
       <ul>
@@ -11,6 +11,8 @@ function MenuUi() {
             items={submenu}
             key={[index]}
             indices={[index]}
+            onToolSelect={onToolSelect}
+            selectedToolId={toolId}
           />
         ))}
       </ul>

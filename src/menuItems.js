@@ -10,10 +10,12 @@ export const menuItems = [
       {
         name: "Polyline distance measurement",
         icon: polylineIcon,
+        toolId: "polyline",
       },
       {
         name: "Polygon area measurement",
         icon: polygonIcon,
+        toolId: "polygon",
       },
     ],
   },

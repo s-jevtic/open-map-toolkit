@@ -2,7 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Menu.css";
 import { Tooltip } from "react-tooltip";
 
-function Menu({ items, parentOrientation, indices }) {
+function Menu({
+  items,
+  parentOrientation,
+  indices,
+  onToolSelect,
+  selectedToolId,
+}) {
   const orientation =
     parentOrientation === "horizontal" ? "vertical" : "horizontal";
   const iconPath = items.icon;
@@ -11,24 +17,17 @@ function Menu({ items, parentOrientation, indices }) {
   const iconContainerRef = useRef(null);
   const [selected, setSelected] = useState(false);
 
+  function clickHandler() {
+    if (submenus) return;
+    setSelected(true);
+    onToolSelect(items.toolId);
+  }
+
   useEffect(() => {
-    const mouseHandler = (event) => {
-      if (iconContainerRef.current && !submenus) {
-        setSelected(iconContainerRef.current.contains(event.target));
-      }
-    };
-    const touchHandler = (event) => {
-      if (iconContainerRef.current && !submenus) {
-        setSelected(iconContainerRef.current.contains(event.target));
-      }
-    };
-    document.addEventListener("mousedown", mouseHandler);
-    document.addEventListener("touchstart", touchHandler);
-    return () => {
-      document.removeEventListener("mousedown", mouseHandler);
-      document.removeEventListener("touchstart", touchHandler);
-    };
-  });
+    if (selectedToolId !== items.toolId) {
+      setSelected(false);
+    }
+  }, [selectedToolId]);
 
   return (
     <>
@@ -69,6 +68,7 @@ function Menu({ items, parentOrientation, indices }) {
           }`}
           data-tooltip-id="menu-tooltip"
           ref={iconContainerRef}
+          onClick={clickHandler}
         >
           <img
             src={iconPath}
@@ -91,6 +91,8 @@ function Menu({ items, parentOrientation, indices }) {
                 indices={[...indices, index]}
                 key={[...indices, index]}
                 parentOrientation={orientation}
+                onToolSelect={onToolSelect}
+                selectedToolId={selectedToolId}
               />
             );
           })}
