@@ -8,7 +8,7 @@ function ToolUi({ toolId, onToolDeselect }) {
   }
   return (
     <>
-      <div className="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50/80 md:opacity-80 opacity-100 md:w-96 w-full h-32">
+      <div className="flex-none dark:bg-slate-900 text-slate-900 dark:text-slate-50/80 md:opacity-80 opacity-100 md:w-96 w-full h-32">
         <Tool toolId={toolId} units={units} />
         <button onClick={onToolDeselect}>close</button>
         {/*TODO*/}

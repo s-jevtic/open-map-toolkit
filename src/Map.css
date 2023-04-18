@@ -4,9 +4,13 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: auto;
+  bottom: 0;
 }
 
-#nav-wrapper-main :first-child :first-child :first-child {
+#nav-wrapper-main div div:first-of-type {
   box-sizing: unset;
+}
+
+#menu-container {
+  position: relative;
 }

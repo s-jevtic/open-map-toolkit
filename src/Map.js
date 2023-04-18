@@ -16,15 +16,15 @@ const mapOpts = {
 function Map() {
   return (
     <>
-      <div id="map-wrapper-main">
+      <div id="map-wrapper-main" className="z-0">
         <MapLibreMap options={mapOpts} mapId="map-main" />
       </div>
-      <div id="nav-wrapper-main">
+      <div id="nav-wrapper-main" className="z-10">
         <MlNavigationTools mapId="map-main" />
       </div>
       <div
         id="scale-wrapper-main"
-        className="absolute bottom-[15px] left-[15px]"
+        className="absolute bottom-[15px] left-[15px] z-10"
       >
         <MlScaleReference mapId="map-main" />
       </div>

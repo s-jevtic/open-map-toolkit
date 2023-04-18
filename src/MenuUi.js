@@ -2,7 +2,7 @@ import React from "react";
 import Menu from "./Menu.js";
 import { menuItems } from "./menuItems";
 
-function MenuUi({ onToolSelect, onToolDeselect, toolId }) {
+function MenuUi({ onToolSelect, toolId }) {
   return (
     <div id="menu-container" className="m-3 flex flex-col w-fit z-20">
       <ul>
